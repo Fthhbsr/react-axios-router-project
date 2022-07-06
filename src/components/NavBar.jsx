@@ -2,22 +2,30 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(
     sessionStorage.getItem("email") || false
   );
 
+  const handleClick = () => {
+    setIsOpen(false);
+    sessionStorage.clear();
+  };
+
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="success" variant="dark">
         {isOpen ? (
           <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Navbar.Brand href="/home">Clarusway</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="home">Home</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <NavLink to="/home">Home</NavLink>
+              <NavLink to="/about">About</NavLink>
+              <NavLink to="/" onClick={handleClick}>
+                Logout
+              </NavLink>
             </Nav>
           </Container>
         ) : (
