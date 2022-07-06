@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import SearchUser from "../components/SearchUser";
 import Followers from "../components/Followers";
 
@@ -13,13 +12,13 @@ const Home = () => {
     const { data } = await axios.get(
       "https://api.github.com/users/fthhbsr/followers?per_page=100"
     );
+    setAllFollowers(data);
     console.log(data);
   };
-
   const handleChange = (e) => {
     setSearch(e.target.value);
+    console.log(e.target.value);
   };
-
   useEffect(() => {
     getFollowers();
     setTimeout(() => {
@@ -34,7 +33,7 @@ const Home = () => {
   return (
     <div>
       <SearchUser handleChange={handleChange} />
-      <Followers followers={(loading, followersList)} />
+      <Followers followers={{ loading, followersList }} />
     </div>
   );
 };

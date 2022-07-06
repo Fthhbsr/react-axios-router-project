@@ -1,28 +1,27 @@
-import React from "react";
-import Paginate from "../components/Paginate";
-import CardFollowers from "../components/CardFollowers";
+import React, { useState } from "react";
+import Paginate from "./Paginate";
+import CardFollowers from "./CardFollowers";
 import loadingGif from "../assets/loading.gif";
-import { useState } from "react";
-import { Row, Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 const Followers = ({ followers }) => {
-  const { loading, followerList } = followers;
+  const { loading, followersList } = followers;
   const [followersPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastFollower = currentPage * followersPerPage;
   const indexOfFirstFollower = indexOfLastFollower - followersPerPage;
-  const currentFollowers = followerList.slice(
+  const currentFollowers = followersList.slice(
     indexOfFirstFollower,
     indexOfLastFollower
   );
-  const totalPages = followerList.length / followersPerPage;
+  const totalPages = Math.ceil(followersList.length / followersPerPage);
 
   return (
     <div>
       {loading ? (
         <div>
-          <img src={loadingGif} alt="Loading..." />
+          <img src={loadingGif} alt="loading..." />
         </div>
       ) : (
         <div>

@@ -7,11 +7,13 @@ const SearchUser = ({ handleChange }) => {
     <div className="row">
       <div className="col-md-4 mx-auto">
         <InputGroup className="mb-3">
-          <InputGroup.Text id="search">Search</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-default">
+            Search
+          </InputGroup.Text>
           <Form.Control
             type="search"
             onChange={handleChange}
-            aria-describedby="search"
+            aria-describedby="inputGroup-sizing-default"
           />
         </InputGroup>
       </div>
